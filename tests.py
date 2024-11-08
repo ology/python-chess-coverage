@@ -19,7 +19,7 @@ assert cover['e4']['moves'] == ["d5", "e5"]
 assert cover['e4']['occupant'] == "white pawn"
 assert cover['e4']['position'] == "e4"
 assert cover['e4']['protects'] == []
-assert cover['e4']['symbol'] == "p"
+assert cover['e4']['symbol'] == "P"
 assert cover['e4']['threatens'] == ["d5"]
 
 assert cover['d5']['color'] == False
