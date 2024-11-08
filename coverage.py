@@ -10,10 +10,6 @@ pieces = {
     "k": 6,
 }
 
-board = chess.Board()
-board.push_san("e4")
-board.push_san("d5")
-
 # print(board.parse_san('Nf3'))
 
 # for m in board.legal_moves:
@@ -23,7 +19,7 @@ board.push_san("d5")
 # print(chess.piece_symbol(chess.PAWN))
 # print(chess.piece_name(chess.PAWN))
 
-def fetch_moves(posn):
+def fetch_moves(board, posn):
     moves = []
     for m in board.legal_moves:
         string = str(m)
@@ -35,7 +31,7 @@ def fetch_moves(posn):
             moves.append(to_sq)
     return moves
 
-def fetch_threatens(moves):
+def fetch_threatens(board, moves):
     threatens = []
     for m in moves:
         string = str(m)
@@ -45,9 +41,29 @@ def fetch_threatens(moves):
             threatens.append(string)
     return threatens
 
-def fetch_protects():
+def fetch_protects(board, posn, square):
     protects = []
+    fen = board.fen()
+    parts = fen.split(" ", 1)
+    flipped_fen = parts[0].swapcase()
+    fen_extra = flipped_fen + " " + parts[1]
+    board_copy = chess.Board(fen=fen_extra)
+    piece = board_copy.piece_at(square)
+    color = piece.color
+    piece.color = not color
+    board_copy.set_piece_at(square, piece)
+    board_copy.turn = not color
+    # print(posn)
+    print(board_copy)
+    moves = fetch_moves(board_copy, posn)
+    # print(board_copy)
+    # print(f"P: {posn}, C: {color}, M: {moves}")
+    protects = fetch_threatens(board_copy, moves)
     return protects
+
+board = chess.Board()
+board.push_san("e4")
+board.push_san("d5")
 
 for square in chess.SQUARES:
     color = board.color_at(square)
@@ -59,9 +75,9 @@ for square in chess.SQUARES:
         index = pieces[lower]
         name = chess.piece_name(index)
         board.turn = color
-        moves = fetch_moves(posn)
-        threatens = fetch_threatens(moves)
-        protects = fetch_protects()
+        moves = fetch_moves(board, posn)
+        threatens = fetch_threatens(board, moves)
+        protects = fetch_protects(board, posn, square)
         print(f"Sq: {square}, Pos: {posn}, C: {color}, P: {piece}, N: {name}, M: {moves}, T: {threatens}, Pr: {protects}")
 
 # attackers = board.attackers(chess.WHITE, chess.D5)
