@@ -51,7 +51,7 @@ def fetch_protects(board, posn, square):
     board_copy.set_piece_at(square, piece)
     board_copy.turn = not color
     # print(posn)
-    print(board_copy)
+    # print(board_copy)
     moves = fetch_moves(board_copy, posn)
     protects = fetch_threatens(board_copy, moves)
     for i in protects:
