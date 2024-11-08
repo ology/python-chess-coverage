@@ -1,14 +1,5 @@
 import chess
 
-# print(board.parse_san('Nf3'))
-
-# for m in board.legal_moves:
-#     print(m)
-
-# print(chess.PAWN)
-# print(chess.piece_symbol(chess.PAWN))
-# print(chess.piece_name(chess.PAWN))
-
 def fetch_moves(board, posn):
     moves = []
     for m in board.legal_moves:
@@ -60,6 +51,8 @@ def fetch_protects(board, posn, square):
             break
     return protects
 
+coverage = {}
+
 pieces = {
     "p": 1,
     "n": 2,
@@ -91,11 +84,3 @@ for square in chess.SQUARES:
         threatens = fetch_threatens(board, moves)
         protects = fetch_protects(board, posn, square)
         print(f"On {square} at {posn}, a {color} {name} ({piece}) with {moves} moves, threatening: {threatens} and protecting: {protects}")
-
-# attackers = board.attackers(chess.WHITE, chess.D5)
-# print(attackers)
-
-# coverage = {}
-
-# can = chess.Move.from_uci("a2a5") in board.legal_moves
-# print(can)
