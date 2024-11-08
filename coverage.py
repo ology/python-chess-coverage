@@ -87,11 +87,10 @@ def cover(board):
             else:
                 color_name = 'black'
             moves = fetch_moves(board, posn)
-            allowed = can_move_here(board, moves)
-            key = color_name + "_can_move_here"
             threatens = fetch_threatens(board, moves)
             protects = fetch_protects(board, posn, square)
-            # print(f"On {square} at {posn}, a {color_name} {name} ({piece}) with {moves} moves, threatening: {threatens} and protecting: {protects}")
+            allowed = can_move_here(board, moves)
+            key = color_name + "_can_move_here"
             coverage[posn] = {
                 "index": square,
                 "position": posn,
