@@ -46,8 +46,6 @@ def fetch_protects(board, posn, square):
     # print(posn)
     print(board_copy)
     moves = fetch_moves(board_copy, posn)
-    # print(board_copy)
-    # print(f"P: {posn}, C: {color}, M: {moves}")
     protects = fetch_threatens(board_copy, moves)
     return protects
 
