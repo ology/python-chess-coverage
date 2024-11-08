@@ -84,7 +84,7 @@ def cover(board):
                 "index": square,
                 "position": posn,
                 "color": color,
-                "occupant": f"{color} {name}",
+                "occupant": f"{color_name} {name}",
                 "symbol": lower,
                 "moves": moves,
                 "threatens": threatens,
