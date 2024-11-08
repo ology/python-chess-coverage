@@ -23,3 +23,4 @@ assert cover['e4']['symbol'] == "p"
 assert cover['e4']['threatens'] == ["d5"]
 assert cover['e5']['white_can_move_here'] == ["e4"]
 assert cover['e5']['black_can_move_here'] == ["e7"]
+assert cover['h8']['protects'] == ['g8', "h7"]
