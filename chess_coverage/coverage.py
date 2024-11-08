@@ -101,7 +101,7 @@ class Coverage:
                     "position": posn,
                     "color": color,
                     "occupant": f"{color_name} {name}",
-                    "symbol": lower,
+                    "symbol":  str(piece),
                     "moves": moves,
                     "threatens": threatens,
                     "protects": protects,
