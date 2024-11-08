@@ -51,7 +51,7 @@ def fetch_protects(board, posn, square):
             break
     return protects
 
-def iterate(board):
+def cover(board):
     for square in chess.SQUARES:
         color = board.color_at(square)
         piece = board.piece_at(square)
@@ -84,7 +84,7 @@ def main():
     board = chess.Board()
     board.push_san("e4")
     board.push_san("d5")
-    iterate(board)
+    cover(board)
 
 if __name__ == "__main__":
     main()
