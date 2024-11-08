@@ -125,15 +125,3 @@ class Coverage:
                     if ('protects' in cov) and (posn in cov['protects']):
                         c["is_protected_by"].append(i)
         return coverage
-
-def main():
-    board = chess.Board()
-    board.push_san("e4")
-    board.push_san("d5")
-    c = Coverage(board)
-    coverage = c.cover()
-    print(json.dumps(coverage, indent=2, sort_keys=True))
-    print(board)
-
-if __name__ == "__main__":
-    main()
