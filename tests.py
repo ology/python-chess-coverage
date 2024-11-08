@@ -21,8 +21,20 @@ assert cover['e4']['position'] == "e4"
 assert cover['e4']['protects'] == []
 assert cover['e4']['symbol'] == "p"
 assert cover['e4']['threatens'] == ["d5"]
+
+assert cover['d5']['color'] == False
+assert cover['d5']['index'] == 35
+assert cover['d5']['is_protected_by'] == ["d8"]
+assert cover['d5']['is_threatened_by'] == ["e4"]
+assert cover['d5']['moves'] == ["e4", "d4"]
+assert cover['d5']['occupant'] == "black pawn"
+assert cover['d5']['position'] == "d5"
+assert cover['d5']['protects'] == []
+assert cover['d5']['symbol'] == "p"
+assert cover['d5']['threatens'] == ["e4"]
+
 assert cover['e5']['white_can_move_here'] == ["e4"]
 assert cover['e5']['black_can_move_here'] == ["e7"]
-assert cover['d5']['is_threatened_by'] == ["e4"]
+
 assert cover['h8']['protects'] == ["g8", "h7"]
 assert cover['h7']['is_protected_by'] == ["h8"]
