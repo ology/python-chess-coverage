@@ -41,8 +41,8 @@ class Coverage:
         fen = self.board.fen()
         parts = fen.split(" ", 1)
         flipped_fen = parts[0].swapcase()
-        fen_extra = flipped_fen + " " + parts[1]
-        board_copy = chess.Board(fen=fen_extra)
+        full_fen = flipped_fen + " " + parts[1]
+        board_copy = chess.Board(fen=full_fen)
         piece = board_copy.piece_at(square)
         color = piece.color
         piece.color = not color
