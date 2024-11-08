@@ -15,5 +15,4 @@ c = Coverage(board)
 cover = c.cover()
 
 print(json.dumps(cover, indent=2, sort_keys=True))
-print(board)
 ```
