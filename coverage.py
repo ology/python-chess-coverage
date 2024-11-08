@@ -86,13 +86,16 @@ class Coverage:
                 self.board.turn = color
                 if color:
                     color_name = 'white'
+                    opponent_color = 'black'
                 else:
                     color_name = 'black'
+                    opponent_color = 'white'
                 moves = self.fetch_moves(self.board, posn)
                 threatens = self.fetch_threatens(self.board, moves)
                 protects = self.fetch_protects(posn, square)
                 allowed = self.can_move_here(moves)
                 key = color_name + "_can_move_here"
+                opp = opponent_color + "_can_move_here"
                 coverage[posn] = {
                     "index": square,
                     "position": posn,
@@ -103,6 +106,7 @@ class Coverage:
                     "threatens": threatens,
                     "protects": protects,
                     key: allowed,
+                    opp: []
                 }
         for posn in coverage:
             c = coverage[posn]
