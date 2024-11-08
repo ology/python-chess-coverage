@@ -109,18 +109,21 @@ class Coverage:
                 self.can_move_here(coverage, posn, color_name, moves)
         for posn in coverage:
             c = coverage[posn]
-            if not "is_threatened_by" in c:
-                c["is_threatened_by"] = []
-            if not "is_protected_by" in c:
-                c["is_protected_by"] = []
-            for i in coverage:
-                cov = coverage[i]
-                if i == posn:
-                    continue
-                if ('threatens' in cov) and (posn in cov['threatens']):
-                    c["is_threatened_by"].append(i)
-                if ('protects' in cov) and (posn in cov['protects']):
-                    c["is_protected_by"].append(i)
+            square = chess.parse_square(posn)
+            piece = self.board.piece_at(square)
+            if piece:
+                if not "is_threatened_by" in c:
+                    c["is_threatened_by"] = []
+                if not "is_protected_by" in c:
+                    c["is_protected_by"] = []
+                for i in coverage:
+                    cov = coverage[i]
+                    if i == posn:
+                        continue
+                    if ('threatens' in cov) and (posn in cov['threatens']):
+                        c["is_threatened_by"].append(i)
+                    if ('protects' in cov) and (posn in cov['protects']):
+                        c["is_protected_by"].append(i)
         return coverage
 
 def main():
