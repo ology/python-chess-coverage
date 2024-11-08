@@ -1,4 +1,5 @@
 import chess
+import json
 
 def fetch_moves(board, posn):
     moves = []
@@ -52,6 +53,7 @@ def fetch_protects(board, posn, square):
     return protects
 
 def cover(board):
+    coverage = {}
     for square in chess.SQUARES:
         color = board.color_at(square)
         piece = board.piece_at(square)
@@ -71,20 +73,31 @@ def cover(board):
             name = chess.piece_name(index)
             board.turn = color
             if color:
-                color = 'white'
+                color_name = 'white'
             else:
-                color = 'black'
+                color_name = 'black'
             moves = fetch_moves(board, posn)
             threatens = fetch_threatens(board, moves)
             protects = fetch_protects(board, posn, square)
-            print(f"On {square} at {posn}, a {color} {name} ({piece}) with {moves} moves, threatening: {threatens} and protecting: {protects}")
+            # print(f"On {square} at {posn}, a {color_name} {name} ({piece}) with {moves} moves, threatening: {threatens} and protecting: {protects}")
+            coverage[posn] = {
+                "index": square,
+                "position": posn,
+                "color": color,
+                "occupant": f"{color} {name}",
+                "symbol": lower,
+                "moves": moves,
+                "threatens": threatens,
+                "protects": protects,
+            }
+    return coverage
 
 def main():
-    coverage = {}
     board = chess.Board()
     board.push_san("e4")
     board.push_san("d5")
-    cover(board)
+    coverage = cover(board)
+    print(json.dumps(coverage, indent=2))
 
 if __name__ == "__main__":
     main()
