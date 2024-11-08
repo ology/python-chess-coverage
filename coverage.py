@@ -19,7 +19,7 @@ def fetch_moves(posn):
     for m in board.legal_moves:
         string = str(m)
         # print(string)
-        from_sq = string[:2]
+        from_sq = string[0:2]
         to_sq = string[2:4]
         # print(f"F: {from_sq}, T: {to_sq}")
         if from_sq == posn:
