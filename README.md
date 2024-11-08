@@ -1,2 +1,2 @@
 # python-chess-coverage
-Python Chess Ply Potential Energy
+Expose the potential energy of chess ply

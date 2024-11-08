@@ -1,0 +1,18 @@
+[project]
+name = "python-chess-coverage"
+version = "0.0.1"
+authors = [
+  { name="Gene Boggs", email="gene.boggs@gmail.com" },
+]
+description = "Expose the potential energy of chess ply"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU GENERAL PUBLIC LICENSE",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/ology/python-chess-coverage"
+Issues = "https://github.com/ology/python-chess-coverage/issues"
