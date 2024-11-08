@@ -52,7 +52,6 @@ def fetch_protects(board, posn, square):
     return protects
 
 coverage = {}
-
 pieces = {
     "p": 1,
     "n": 2,
