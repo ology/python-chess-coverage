@@ -1,5 +1,4 @@
 import chess
-import json
 
 class Coverage:
     def __init__(self, board):
