@@ -1,6 +1,15 @@
 import chess
 import re
 
+pieces = {
+    "p": 1,
+    "n": 2,
+    "b": 3,
+    "r": 4,
+    "q": 5,
+    "k": 6,
+}
+
 board = chess.Board()
 board.push_san("e4")
 board.push_san("d5")
@@ -26,14 +35,16 @@ def fetch_moves(posn):
             moves.append(to_sq)
     return moves
 
-pieces = {
-    "p": 1,
-    "n": 2,
-    "b": 3,
-    "r": 4,
-    "q": 5,
-    "k": 6,
-}
+def fetch_threatens(moves):
+    threatens = []
+    for m in moves:
+        string = str(m)
+        square = chess.parse_square(string)
+        piece = board.piece_at(square)
+        if piece:
+            threatens.append(string)
+    return threatens
+
 for square in chess.SQUARES:
     color = board.color_at(square)
     piece = board.piece_at(square)
@@ -45,7 +56,8 @@ for square in chess.SQUARES:
         name = chess.piece_name(index)
         board.turn = color
         moves = fetch_moves(posn)
-        print(f"S: {square}, I: {index}, P: {posn}, C: {color}, P: {piece}, N: {name}, M: {moves}")
+        threatens = fetch_threatens(moves)
+        print(f"S: {square}, I: {index}, P: {posn}, C: {color}, P: {piece}, N: {name}, M: {moves}, T: {threatens}")
 
 # attackers = board.attackers(chess.WHITE, chess.D5)
 # print(attackers)
