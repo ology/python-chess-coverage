@@ -45,6 +45,10 @@ def fetch_threatens(moves):
             threatens.append(string)
     return threatens
 
+def fetch_protects():
+    protects = []
+    return protects
+
 for square in chess.SQUARES:
     color = board.color_at(square)
     piece = board.piece_at(square)
@@ -57,9 +61,7 @@ for square in chess.SQUARES:
         board.turn = color
         moves = fetch_moves(posn)
         threatens = fetch_threatens(moves)
-        # board.turn = not color
-        protects = [] #fetch_threatens(posn, moves)
-        # board.turn = color
+        protects = fetch_protects()
         print(f"Sq: {square}, Pos: {posn}, C: {color}, P: {piece}, N: {name}, M: {moves}, T: {threatens}, Pr: {protects}")
 
 # attackers = board.attackers(chess.WHITE, chess.D5)
