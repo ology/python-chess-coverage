@@ -47,6 +47,7 @@ def fetch_protects(board, posn, square):
     print(board_copy)
     moves = fetch_moves(board_copy, posn)
     protects = fetch_threatens(board_copy, moves)
+    # TODO remove a king
     return protects
 
 pieces = {
