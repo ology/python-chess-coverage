@@ -42,14 +42,14 @@ class Coverage:
         parts = fen.split(" ", 1)
         flipped_fen = parts[0].swapcase()
         full_fen = flipped_fen + " " + parts[1]
-        board_copy = chess.Board(fen=full_fen)
-        piece = board_copy.piece_at(square)
+        flipped_board = chess.Board(fen=full_fen)
+        piece = flipped_board.piece_at(square)
         color = piece.color
         piece.color = not color
-        board_copy.set_piece_at(square, piece)
-        board_copy.turn = not color
-        moves = self.fetch_moves(board_copy, posn)
-        protects = self.fetch_threatens(board_copy, moves)
+        flipped_board.set_piece_at(square, piece)
+        flipped_board.turn = not color
+        moves = self.fetch_moves(flipped_board, posn)
+        protects = self.fetch_threatens(flipped_board, moves)
         for i in protects.copy():
             if self.is_king(i):
                 protects.remove(i)
