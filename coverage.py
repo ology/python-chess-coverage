@@ -1,14 +1,4 @@
 import chess
-import re
-
-pieces = {
-    "p": 1,
-    "n": 2,
-    "b": 3,
-    "r": 4,
-    "q": 5,
-    "k": 6,
-}
 
 # print(board.parse_san('Nf3'))
 
@@ -60,6 +50,15 @@ def fetch_protects(board, posn, square):
     # print(f"P: {posn}, C: {color}, M: {moves}")
     protects = fetch_threatens(board_copy, moves)
     return protects
+
+pieces = {
+    "p": 1,
+    "n": 2,
+    "b": 3,
+    "r": 4,
+    "q": 5,
+    "k": 6,
+}
 
 board = chess.Board()
 board.push_san("e4")
