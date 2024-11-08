@@ -72,10 +72,14 @@ for square in chess.SQUARES:
         index = pieces[lower]
         name = chess.piece_name(index)
         board.turn = color
+        if color:
+            color = 'white'
+        else:
+            color = 'black'
         moves = fetch_moves(board, posn)
         threatens = fetch_threatens(board, moves)
         protects = fetch_protects(board, posn, square)
-        print(f"Sq: {square}, Pos: {posn}, C: {color}, P: {piece}, N: {name}, M: {moves}, T: {threatens}, Pr: {protects}")
+        print(f"On {square} at {posn}, a {color} {name} ({piece}) with {moves} moves, threatening: {threatens} and protecting: {protects}")
 
 # attackers = board.attackers(chess.WHITE, chess.D5)
 # print(attackers)
