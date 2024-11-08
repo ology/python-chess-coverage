@@ -1,5 +1,5 @@
 import chess
-import json
+# import json
 
 from chess_coverage.coverage import Coverage
 
