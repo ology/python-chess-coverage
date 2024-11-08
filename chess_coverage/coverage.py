@@ -5,6 +5,11 @@ class Coverage:
     def __init__(self, board):
         self.board = board
 
+    def get_piece(self, board, string):
+        square = chess.parse_square(string)
+        piece = board.piece_at(square)
+        return piece
+
     def fetch_moves(self, board, posn):
         moves = []
         for m in board.legal_moves:
@@ -21,15 +26,13 @@ class Coverage:
         threatens = []
         for m in moves:
             string = str(m)
-            square = chess.parse_square(string)
-            piece = board.piece_at(square)
+            piece = self.get_piece(board, string)
             if piece:
                 threatens.append(string)
         return threatens
 
     def is_king(self, posn):
-        square = chess.parse_square(posn)
-        piece = self.board.piece_at(square)
+        piece = self.get_piece(self.board, posn)
         if piece.symbol().lower() == 'k':
             return True
         return False
@@ -57,8 +60,7 @@ class Coverage:
     def can_move_here(self, coverage, posn, color_name, moves):
         for m in moves:
             string = str(m)
-            square = chess.parse_square(string)
-            piece = self.board.piece_at(square)
+            piece = self.get_piece(self.board, string)
             if not piece:
                 if not string in coverage:
                     coverage[string] = {}
@@ -109,8 +111,7 @@ class Coverage:
                 self.can_move_here(coverage, posn, color_name, moves)
         for posn in coverage:
             pc = coverage[posn]
-            square = chess.parse_square(posn)
-            piece = self.board.piece_at(square)
+            piece = self.get_piece(self.board, posn)
             if piece:
                 if not "is_threatened_by" in pc:
                     pc["is_threatened_by"] = []
