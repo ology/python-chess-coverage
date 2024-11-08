@@ -97,7 +97,7 @@ def main():
     board.push_san("e4")
     board.push_san("d5")
     coverage = cover(board)
-    print(json.dumps(coverage, indent=2))
+    print(json.dumps(coverage, indent=2, sort_keys=True))
 
 if __name__ == "__main__":
     main()
