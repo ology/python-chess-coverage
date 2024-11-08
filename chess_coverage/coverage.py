@@ -50,7 +50,7 @@ class Coverage:
         board_copy.turn = not color
         moves = self.fetch_moves(board_copy, posn)
         protects = self.fetch_threatens(board_copy, moves)
-        for i in protects:
+        for i in protects.copy():
             if self.is_king(i):
                 protects.remove(i)
                 break
