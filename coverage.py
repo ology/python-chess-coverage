@@ -35,10 +35,12 @@ def fetch_moves(posn):
             moves.append(to_sq)
     return moves
 
-def fetch_threatens(moves):
+def fetch_threatens(posn, moves):
     threatens = []
     for m in moves:
         string = str(m)
+        if string == posn:
+            continue
         square = chess.parse_square(string)
         piece = board.piece_at(square)
         if piece:
@@ -56,7 +58,7 @@ for square in chess.SQUARES:
         name = chess.piece_name(index)
         board.turn = color
         moves = fetch_moves(posn)
-        threatens = fetch_threatens(moves)
+        threatens = fetch_threatens(posn, moves)
         print(f"S: {square}, I: {index}, P: {posn}, C: {color}, P: {piece}, N: {name}, M: {moves}, T: {threatens}")
 
 # attackers = board.attackers(chess.WHITE, chess.D5)
