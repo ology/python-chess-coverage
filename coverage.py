@@ -54,15 +54,20 @@ class Coverage:
                 break
         return protects
 
-    def can_move_here(self, moves):
-        allowed = []
+    def can_move_here(self, coverage, posn, color_name, moves):
         for m in moves:
             string = str(m)
             square = chess.parse_square(string)
             piece = self.board.piece_at(square)
             if not piece:
-                allowed.append(string)
-        return allowed
+                if not string in coverage:
+                    coverage[string] = {}
+                key = color_name + "_can_move_here"
+                if not key in coverage[string]:
+                    coverage[string][key] = []
+                coverage[string][key].append(posn)
+                # print(f"M: {string}, K: {key}, P: {posn}")
+                # print(f"C: {coverage[string][key]}")
 
     def cover(self):
         coverage = {}
@@ -86,16 +91,11 @@ class Coverage:
                 self.board.turn = color
                 if color:
                     color_name = 'white'
-                    opponent_color = 'black'
                 else:
                     color_name = 'black'
-                    opponent_color = 'white'
                 moves = self.fetch_moves(self.board, posn)
                 threatens = self.fetch_threatens(self.board, moves)
                 protects = self.fetch_protects(posn, square)
-                allowed = self.can_move_here(moves)
-                key = color_name + "_can_move_here"
-                opp = opponent_color + "_can_move_here"
                 coverage[posn] = {
                     "index": square,
                     "position": posn,
@@ -105,9 +105,8 @@ class Coverage:
                     "moves": moves,
                     "threatens": threatens,
                     "protects": protects,
-                    key: allowed,
-                    opp: []
                 }
+                self.can_move_here(coverage, posn, color_name, moves)
         for posn in coverage:
             c = coverage[posn]
             if not "is_threatened_by" in c:
@@ -118,9 +117,9 @@ class Coverage:
                 cov = coverage[i]
                 if i == posn:
                     continue
-                if posn in cov['threatens']:
+                if ('threatens' in cov) and (posn in cov['threatens']):
                     c["is_threatened_by"].append(i)
-                if posn in cov['protects']:
+                if ('protects' in cov) and (posn in cov['protects']):
                     c["is_protected_by"].append(i)
         return coverage
 
