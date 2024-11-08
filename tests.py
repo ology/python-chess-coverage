@@ -1,7 +1,7 @@
 import chess
 import json
 
-from coverage import Coverage
+from chess_coverage.coverage import Coverage
 
 board = chess.Board()
 board.push_san("e4")
