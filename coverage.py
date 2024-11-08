@@ -6,8 +6,8 @@ board.push_san("d5")
 
 # print(board.parse_san('Nf3'))
 
-for m in board.legal_moves:
-    print(m)
+# for m in board.legal_moves:
+#     print(m)
 
 # print(chess.PAWN)
 # print(chess.piece_symbol(chess.PAWN))
@@ -21,23 +21,21 @@ pieces = {
     "q": 5,
     "k": 6,
 }
-# for square in chess.SQUARES:
-#     color = board.color_at(square)
-#     piece = board.piece_at(square)
-#     name = '-'
-#     if piece:
-#         lower = str(piece).lower()
-#         index = pieces[lower]
-#         name = chess.piece_name(index)
-#     print(f"S: {square}, C: {color}, P: {piece}, N: {name}")
+for index in chess.SQUARES:
+    color = board.color_at(index)
+    piece = board.piece_at(index)
+    name = '-'
+    if piece:
+        position = chess.square_name(index)
+        lower = str(piece).lower()
+        index = pieces[lower]
+        name = chess.piece_name(index)
+    print(f"I: {index}, P: {position}, C: {color}, P: {piece}, N: {name}")
 
 # attackers = board.attackers(chess.WHITE, chess.D5)
 # print(attackers)
 
 # coverage = {}
-
-# for square in chess.SQUARES:
-#     print(square)
 
 # can = chess.Move.from_uci("a2a5") in board.legal_moves
 # print(can)
