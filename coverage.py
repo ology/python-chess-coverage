@@ -31,6 +31,13 @@ def fetch_threatens(board, moves):
             threatens.append(string)
     return threatens
 
+def is_king(board, posn):
+    square = chess.parse_square(posn)
+    piece = board.piece_at(square)
+    if piece.symbol().lower() == 'k':
+        return True
+    return False
+
 def fetch_protects(board, posn, square):
     protects = []
     fen = board.fen()
@@ -47,7 +54,10 @@ def fetch_protects(board, posn, square):
     print(board_copy)
     moves = fetch_moves(board_copy, posn)
     protects = fetch_threatens(board_copy, moves)
-    # TODO remove a king
+    for i in protects:
+        if is_king(board, i):
+            protects.remove(i)
+            break
     return protects
 
 pieces = {
