@@ -51,35 +51,40 @@ def fetch_protects(board, posn, square):
             break
     return protects
 
-coverage = {}
-pieces = {
-    "p": 1,
-    "n": 2,
-    "b": 3,
-    "r": 4,
-    "q": 5,
-    "k": 6,
-}
+def iterate(board):
+    for square in chess.SQUARES:
+        color = board.color_at(square)
+        piece = board.piece_at(square)
+        pieces = {
+            "p": 1,
+            "n": 2,
+            "b": 3,
+            "r": 4,
+            "q": 5,
+            "k": 6,
+        }
+        name = '-'
+        if piece:
+            posn = chess.square_name(square)
+            lower = str(piece).lower()
+            index = pieces[lower]
+            name = chess.piece_name(index)
+            board.turn = color
+            if color:
+                color = 'white'
+            else:
+                color = 'black'
+            moves = fetch_moves(board, posn)
+            threatens = fetch_threatens(board, moves)
+            protects = fetch_protects(board, posn, square)
+            print(f"On {square} at {posn}, a {color} {name} ({piece}) with {moves} moves, threatening: {threatens} and protecting: {protects}")
 
-board = chess.Board()
-board.push_san("e4")
-board.push_san("d5")
+def main():
+    coverage = {}
+    board = chess.Board()
+    board.push_san("e4")
+    board.push_san("d5")
+    iterate(board)
 
-for square in chess.SQUARES:
-    color = board.color_at(square)
-    piece = board.piece_at(square)
-    name = '-'
-    if piece:
-        posn = chess.square_name(square)
-        lower = str(piece).lower()
-        index = pieces[lower]
-        name = chess.piece_name(index)
-        board.turn = color
-        if color:
-            color = 'white'
-        else:
-            color = 'black'
-        moves = fetch_moves(board, posn)
-        threatens = fetch_threatens(board, moves)
-        protects = fetch_protects(board, posn, square)
-        print(f"On {square} at {posn}, a {color} {name} ({piece}) with {moves} moves, threatening: {threatens} and protecting: {protects}")
+if __name__ == "__main__":
+    main()
