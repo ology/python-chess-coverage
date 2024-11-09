@@ -1,12 +1,7 @@
 # python-chess-coverage
 Expose the potential energy of chess ply
 
-Name: python-chess-coverage
-
-Abstract: Expose the potential energy of chess ply.
-
-Description: This library constructs a dictionary of chess piece threat
-and protection statuses, keyed by "rank and file" board positions.
+This library constructs a dictionary of chess piece threat and protection statuses, keyed by "rank and file" board positions.
 
 Usage:
 
