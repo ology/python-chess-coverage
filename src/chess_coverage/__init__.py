@@ -1,0 +1,1 @@
+from chess_coverage.chess_coverage import Coverage
