@@ -42,9 +42,9 @@ requires-python = ">= 3.9"
 
 # List your needed third-party libraries, if you have any.  "rich" is here as an
 # example.  Your list will be completely different.
-dependencies = [
-    "chess",
-]
+#dependencies = [
+#    "chess",
+#]
 
 # State that the version will be defined dynamically below.
 dynamic = ["version"]
