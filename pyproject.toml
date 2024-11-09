@@ -20,3 +20,6 @@ Issues = "https://github.com/ology/python-chess-coverage/issues"
 [build-system]
 requires = ["hatchling", "python-chess"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["chess_coverage/coverage"]
