@@ -3,4 +3,4 @@
 # This is the version number of your code.  This will change each time you make
 # a new release.  The most popular approach is to use Semantic Versioning,
 # described at https://semver.org/
-__version__ = "0.0.12"
+__version__ = "0.0.16"
