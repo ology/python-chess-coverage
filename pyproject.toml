@@ -1,6 +1,6 @@
 [project]
 name = "chess_coverage"
-version = "0.0.9"
+version = "0.0.10"
 authors = [
   { name="Gene Boggs", email="gene.boggs@gmail.com" },
 ]
@@ -12,11 +12,14 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+    "chess",
+]
 
 [project.urls]
 Homepage = "https://github.com/ology/python-chess-coverage"
 Issues = "https://github.com/ology/python-chess-coverage/issues"
 
 [build-system]
-requires = ["hatchling", "python-chess"]
-build-backend = "hatchling.build"
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
