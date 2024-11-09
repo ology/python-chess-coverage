@@ -1,5 +1,5 @@
 [project]
-name = "python-chess-coverage"
+name = "chess_coverage"
 version = "0.0.1"
 authors = [
   { name="Gene Boggs", email="gene.boggs@gmail.com" },
