@@ -1,3 +1,29 @@
+"""
+Name: python-chess-coverage
+
+Abstract: Expose the potential energy of chess ply.
+
+Description: This library constructs a dictionary of chess piece threat
+and protection statuses, keyed by "rank and file" board positions.
+
+Example fragment:
+
+  "e4": {
+    "color": true,
+    "index": 28,
+    "is_protected_by": [],
+    "is_threatened_by": ["d5"],
+    "moves": ["d5", "e5"],
+    "occupant": "white pawn",
+    "position": "e4",
+    "protects": [],
+    "symbol": "p",
+    "threatens": ["d5"],
+    "black_can_move_here": [],
+    "white_can_move_here": []
+  }
+"""
+
 import chess
 
 class Coverage:
