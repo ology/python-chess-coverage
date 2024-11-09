@@ -1,6 +1,6 @@
 [project]
 name = "chess_coverage"
-version = "0.0.4"
+version = "0.0.7"
 authors = [
   { name="Gene Boggs", email="gene.boggs@gmail.com" },
 ]
@@ -20,6 +20,3 @@ Issues = "https://github.com/ology/python-chess-coverage/issues"
 [build-system]
 requires = ["hatchling", "python-chess"]
 build-backend = "hatchling.build"
-
-[tool.hatch.build.targets.wheel]
-packages = ["chess_coverage/chess_coverage"]
