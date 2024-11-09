@@ -16,3 +16,7 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/ology/python-chess-coverage"
 Issues = "https://github.com/ology/python-chess-coverage/issues"
+
+[build-system]
+requires = ["hatchling", "python-chess"]
+build-backend = "hatchling.build"
