@@ -40,11 +40,8 @@ classifiers = [
 # is at https://nedbatchelder.com/text/which-py.html.
 requires-python = ">= 3.9"
 
-# List your needed third-party libraries, if you have any.  "rich" is here as an
-# example.  Your list will be completely different.
-#dependencies = [
-#    "chess",
-#]
+# List your needed third-party libraries, if you have any.
+dependencies = ["chess"]
 
 # State that the version will be defined dynamically below.
 dynamic = ["version"]
@@ -53,8 +50,9 @@ dynamic = ["version"]
 # These URLs are displayed in a sidebar on PyPI. You don't have to have them,
 # but they can help people learn more about your project. You can include as
 # many named URLs as you want.  They can be any URL, not just to GitHub.
-"Source code" = "https://github.com/ology/python-chess-coverage"
-"Issue tracker" = "https://github.com/ology/python-chess-coverage/issues"
+Homepage = "https://github.com/ology/python-chess-coverage"
+Repository = "https://github.com/ology/python-chess-coverage.git"
+Issues = "https://github.com/ology/python-chess-coverage/issues"
 
 [project.scripts]
 # COMMANDS: These are commands you are installing.  Omit this section if you
