@@ -17,7 +17,7 @@ Example fragment:
     "occupant": "white pawn",
     "position": "e4",
     "protects": [],
-    "symbol": "p",
+    "symbol": "P",
     "threatens": ["d5"],
     "black_can_move_here": [],
     "white_can_move_here": []
