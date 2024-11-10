@@ -39,3 +39,6 @@ Example result fragment:
     "white_can_move_here": []
   }
 ```
+
+![user interface](chess_coverage.png)
+
