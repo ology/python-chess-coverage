@@ -1,0 +1,9 @@
+0.1.2 2024-10-09
+    - Fix test import.
+    - Always return a key per square.
+
+0.1.1 2024-10-09
+    - Add python-chess dependency.
+
+0.1.0 2024-10-08
+    - Initial creation
