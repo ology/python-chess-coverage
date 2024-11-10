@@ -1,7 +1,10 @@
 import chess
 # import json
+import sys
 
-from src.chess_coverage.chess_coverage import Coverage
+sys.path.append('./src')
+
+from chess_coverage.chess_coverage import Coverage
 
 board = chess.Board()
 board.push_san("e4")
