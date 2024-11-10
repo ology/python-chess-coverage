@@ -1,5 +1,5 @@
 import chess
-# import json
+import json
 import sys
 
 sys.path.append('./src')
@@ -44,3 +44,20 @@ assert cover['e5']['black_can_move_here'] == ["e7"]
 
 assert cover['h8']['protects'] == ["g8", "h7"]
 assert cover['h7']['is_protected_by'] == ["h8"]
+
+board = chess.Board()
+board.push_san("e4")
+# print(board.has_legal_en_passant())
+board.push_san("a6")
+# print(board.has_legal_en_passant())
+board.push_san("e5")
+# print(board.has_legal_en_passant())
+board.push_san("d5")
+assert board.has_legal_en_passant() == True
+
+c = Coverage(board)
+cover = c.cover()
+# print(json.dumps(cover, indent=2, sort_keys=True))
+# print(board)
+
+assert cover['e6']['white_can_move_here'] == ["e5"]
