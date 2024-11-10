@@ -83,12 +83,11 @@ class Coverage:
         return protects
 
     def can_move_here(self, coverage, posn, color_name, moves):
+        # print(f"Posn: {posn}, C: {color_name}, M: {moves}")
         for m in moves:
             string = str(m)
             piece = self.get_piece(self.board, string)
             if not piece:
-                if not string in coverage:
-                    coverage[string] = {}
                 key = color_name + "_can_move_here"
                 if not key in coverage[string]:
                     coverage[string][key] = []
@@ -99,6 +98,10 @@ class Coverage:
     def cover(self):
         coverage = {}
         for square in chess.SQUARES:
+            posn = chess.square_name(square)
+            coverage[posn] = {}
+        for square in chess.SQUARES:
+            posn = chess.square_name(square)
             color = self.board.color_at(square)
             piece = self.board.piece_at(square)
             pieces = {
@@ -111,7 +114,6 @@ class Coverage:
             }
             name = '-'
             if piece:
-                posn = chess.square_name(square)
                 lower = str(piece).lower()
                 index = pieces[lower]
                 name = chess.piece_name(index)
@@ -123,16 +125,14 @@ class Coverage:
                 moves = self.fetch_moves(self.board, posn)
                 threatens = self.fetch_threatens(self.board, moves)
                 protects = self.fetch_protects(posn, square)
-                coverage[posn] = {
-                    "index": square,
-                    "position": posn,
-                    "color": color,
-                    "occupant": f"{color_name} {name}",
-                    "symbol":  str(piece),
-                    "moves": moves,
-                    "threatens": threatens,
-                    "protects": protects,
-                }
+                coverage[posn]["index"] = square
+                coverage[posn]["position"] = posn
+                coverage[posn]["color"] = color
+                coverage[posn]["occupant"] = f"{color_name} {name}"
+                coverage[posn]["symbol"] = str(piece)
+                coverage[posn]["moves"] = moves
+                coverage[posn]["threatens"] = threatens
+                coverage[posn]["protects"] = protects
                 self.can_move_here(coverage, posn, color_name, moves)
         for posn in coverage:
             pc = coverage[posn]
