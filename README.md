@@ -40,5 +40,3 @@ Example result fragment:
   }
 ```
 
-![user interface](chess_coverage.png)
-
