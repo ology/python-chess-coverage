@@ -59,5 +59,15 @@ c = Coverage(board)
 cover = c.cover()
 # print(json.dumps(cover, indent=2, sort_keys=True))
 # print(board)
-
 assert cover['e6']['white_can_move_here'] == ["e5"]
+
+# craziness!
+fen = 'rnbqkbnr/ppp1pppp/3p4/8/Q7/8/PPPPPPPP/RNB1KBNR b - - 0 1'
+board = chess.Board(fen=fen)
+c = Coverage(board)
+cover = c.cover()
+# print(json.dumps(cover, indent=2, sort_keys=True))
+# print(board)
+assert cover['a1']['protects'] == ["a2", "b1"]
+assert cover['b1']['is_protected_by'] == ["a1"]
+assert cover['h7']['moves'] == ["h6", "h5"]

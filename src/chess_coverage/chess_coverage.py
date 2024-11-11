@@ -37,7 +37,7 @@ class Coverage:
 
     def fetch_moves(self, board, posn):
         moves = []
-        for m in board.legal_moves:
+        for m in board.pseudo_legal_moves:
             string = str(m)
             # print(string)
             from_sq = string[0:2]
@@ -65,10 +65,9 @@ class Coverage:
     def fetch_protects(self, posn, square):
         protects = []
         fen = self.board.fen()
-        parts = fen.split(" ", 1)
+        parts = fen.split(" ")
         flipped_fen = parts[0].swapcase()
-        full_fen = flipped_fen + " " + parts[1]
-        flipped_board = chess.Board(fen=full_fen)
+        flipped_board = chess.Board(fen=flipped_fen)
         piece = flipped_board.piece_at(square)
         color = piece.color
         piece.color = not color
@@ -83,7 +82,6 @@ class Coverage:
         return protects
 
     def can_move_here(self, coverage, posn, color_name, moves):
-        # print(f"Posn: {posn}, C: {color_name}, M: {moves}")
         for m in moves:
             string = str(m)
             piece = self.get_piece(self.board, string)
@@ -92,8 +90,6 @@ class Coverage:
                 if not key in coverage[string]:
                     coverage[string][key] = []
                 coverage[string][key].append(posn)
-                # print(f"M: {string}, K: {key}, P: {posn}")
-                # print(f"C: {coverage[string][key]}")
 
     def cover(self):
         coverage = {}
