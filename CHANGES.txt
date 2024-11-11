@@ -1,10 +1,13 @@
-0.1.2 2024-10-09
+0.1.3 2024-11-10
+    - Use pseudo_legal_moves.
+
+0.1.2 2024-11-09
     - Fix test import.
     - Verify that en passant is detected.
     - Always return a key per square - even if it's empty.
 
-0.1.1 2024-10-09
+0.1.1 2024-11-09
     - Add python-chess dependency.
 
-0.1.0 2024-10-08
+0.1.0 2024-11-08
     - Initial creation
