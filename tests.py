@@ -45,6 +45,10 @@ assert cover['e5']['black_can_move_here'] == ["e7"]
 assert cover['h8']['protects'] == ["g8", "h7"]
 assert cover['h7']['is_protected_by'] == ["h8"]
 
+# make sure cells with no occupant have an index & position
+assert cover['b4']['index'] == 25
+assert cover['b4']['position'] == 'b4'
+
 board = chess.Board()
 board.push_san("e4")
 # print(board.has_legal_en_passant())
@@ -61,7 +65,7 @@ cover = c.cover()
 # print(board)
 assert cover['e6']['white_can_move_here'] == ["e5"]
 
-# craziness!
+# test check
 fen = 'rnbqkbnr/ppp1pppp/3p4/8/Q7/8/PPPPPPPP/RNB1KBNR b - - 0 1'
 board = chess.Board(fen=fen)
 c = Coverage(board)

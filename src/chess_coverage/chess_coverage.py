@@ -95,7 +95,10 @@ class Coverage:
         coverage = {}
         for square in chess.SQUARES:
             posn = chess.square_name(square)
-            coverage[posn] = {}
+            coverage[posn] = {
+                "index": square,
+                "position": posn,
+            }
         for square in chess.SQUARES:
             posn = chess.square_name(square)
             color = self.board.color_at(square)
@@ -121,8 +124,6 @@ class Coverage:
                 moves = self.fetch_moves(self.board, posn)
                 threatens = self.fetch_threatens(self.board, moves)
                 protects = self.fetch_protects(posn, square)
-                coverage[posn]["index"] = square
-                coverage[posn]["position"] = posn
                 coverage[posn]["color"] = color
                 coverage[posn]["occupant"] = f"{color_name} {name}"
                 coverage[posn]["symbol"] = str(piece)
