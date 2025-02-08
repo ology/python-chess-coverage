@@ -1,10 +1,37 @@
 import chess
-# import json
+import json
 import sys
 
 sys.path.append('./src')
 
 from chess_coverage.chess_coverage import Coverage
+
+board = chess.Board(fen="8/1p6/8/8/8/8/1P6/8")
+c = Coverage(board)
+cover = c.cover()
+# print(json.dumps(cover, indent=2, sort_keys=True))
+# print(board)
+
+b2 = cover['b2']
+assert b2['color'] == True
+assert b2['moves'] == ["b3", "b4"]
+assert b2['occupant'] == "white pawn"
+assert b2['position'] == "b2"
+assert b2['symbol'] == "P"
+a3 = cover['a3']
+assert a3['white_can_capture_here'] == ["b2"]
+c3 = cover['c3']
+assert c3['white_can_capture_here'] == ["b2"]
+b7 = cover['b7']
+assert b7['color'] == False
+assert b7['moves'] == ["b6", "b5"]
+assert b7['occupant'] == "black pawn"
+assert b7['position'] == "b7"
+assert b7['symbol'] == "p"
+a6 = cover['a6']
+assert a6['black_can_capture_here'] == ["b7"]
+c6 = cover['c6']
+assert c6['black_can_capture_here'] == ["b7"]
 
 board = chess.Board()
 board.push_san("e4")

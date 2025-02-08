@@ -20,11 +20,14 @@ Example fragment:
     "symbol": "P",
     "threatens": ["d5"],
     "black_can_move_here": [],
-    "white_can_move_here": []
+    "white_can_move_here": [],
+    "black_can_capture_here": [],
+    "white_can_capture_here": []
   }
 """
 
 import chess
+import re
 
 class Coverage:
     def __init__(self, board):
@@ -91,6 +94,38 @@ class Coverage:
                     coverage[string][key] = []
                 coverage[string][key].append(posn)
 
+    def can_capture_here(self, coverage, posn, color_name):
+        key = color_name + "_can_capture_here"
+        if color_name == 'black':
+            pawn = 'p'
+        else:
+            pawn = 'P'
+        string = str(posn)
+        piece = self.get_piece(self.board, string)
+        if not piece:
+            column = string[0]
+            if color_name == 'black':
+                row = int(string[1]) + 1
+            else:
+                row = int(string[1]) - 1
+            if row > 0 and row <= 8:
+                x = chr(ord(column) - 1)
+                if re.search(r'[a-h]', x):
+                    target = f"{x}{row}"
+                    p = self.get_piece(self.board, target)
+                    if p and str(p) == pawn:
+                        if not key in coverage[string]:
+                            coverage[string][key] = []
+                        coverage[string][key].append(target)
+                x = chr(ord(column) + 1)
+                if re.search(r'[a-h]', x):
+                    target = f"{x}{row}"
+                    p = self.get_piece(self.board, target)
+                    if p and str(p) == pawn:
+                        if not key in coverage[string]:
+                            coverage[string][key] = []
+                        coverage[string][key].append(target)
+
     def cover(self):
         coverage = {}
         for square in chess.SQUARES:
@@ -112,6 +147,8 @@ class Coverage:
                 "k": 6,
             }
             name = '-'
+            self.can_capture_here(coverage, posn, 'black')
+            self.can_capture_here(coverage, posn, 'white')
             if piece:
                 lower = str(piece).lower()
                 index = pieces[lower]
