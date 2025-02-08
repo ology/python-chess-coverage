@@ -85,6 +85,7 @@ class Coverage:
         return protects
 
     def can_move_here(self, coverage, posn, color_name, moves):
+        p = self.get_piece(self.board, str(posn))
         for m in moves:
             string = str(m)
             piece = self.get_piece(self.board, string)
@@ -93,10 +94,10 @@ class Coverage:
                 if not key in coverage[string]:
                     coverage[string][key] = []
                 coverage[string][key].append(posn)
-                key = color_name + "_can_capture_here"
-                if not key in coverage[string]:
-                    coverage[string][key] = []
-                if not re.search(r'[pP]', str(piece)):
+                if not re.search(r'[pP]', str(p)):
+                    key = color_name + "_can_capture_here"
+                    if not key in coverage[string]:
+                        coverage[string][key] = []
                     coverage[string][key].append(posn)
 
     def can_capture_here(self, coverage, posn, color_name):
