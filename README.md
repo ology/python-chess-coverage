@@ -36,7 +36,9 @@ Example result fragment:
     "symbol": "P",
     "threatens": ["d5"],
     "black_can_move_here": [],
-    "white_can_move_here": []
+    "white_can_move_here": [],
+    "black_can_capture_here": [],
+    "white_can_capture_here": []
   }
 ```
 
