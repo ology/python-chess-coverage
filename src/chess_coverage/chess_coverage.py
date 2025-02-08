@@ -93,6 +93,11 @@ class Coverage:
                 if not key in coverage[string]:
                     coverage[string][key] = []
                 coverage[string][key].append(posn)
+                key = color_name + "_can_capture_here"
+                if not key in coverage[string]:
+                    coverage[string][key] = []
+                if not re.search(r'[pP]', str(piece)):
+                    coverage[string][key].append(posn)
 
     def can_capture_here(self, coverage, posn, color_name):
         key = color_name + "_can_capture_here"

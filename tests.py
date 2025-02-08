@@ -1,5 +1,5 @@
 import chess
-import json
+# import json
 import sys
 
 sys.path.append('./src')
@@ -32,6 +32,21 @@ a6 = cover['a6']
 assert a6['black_can_capture_here'] == ["b7"]
 c6 = cover['c6']
 assert c6['black_can_capture_here'] == ["b7"]
+
+board = chess.Board(fen="8/8/8/8/8/8/1r6/8")
+c = Coverage(board)
+cover = c.cover()
+# print(json.dumps(cover, indent=2, sort_keys=True))
+# print(board)
+
+a2 = cover['a2']
+assert a2['black_can_capture_here'] == ["b2"]
+b1 = cover['b1']
+assert b1['black_can_capture_here'] == ["b2"]
+b3 = cover['b3']
+assert b3['black_can_capture_here'] == ["b2"]
+c2 = cover['c2']
+assert c2['black_can_capture_here'] == ["b2"]
 
 board = chess.Board()
 board.push_san("e4")
